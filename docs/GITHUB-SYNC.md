@@ -5,22 +5,14 @@ GitHub is a versioned *source backup*. It does not replace encrypted backups of 
 **Repo:** `https://github.com/texasaggie1/lifeline-offline-first-aid` (**PUBLIC** — treat every commit as published to the world)
 **Local:** `~/Projects/Lifeline-Offline-First-Aid`
 
-## One-time setup (this Mac, as of 2026-11-07: no `gh` CLI, no SSH keys)
-1. In a browser signed in as `texasaggie1`, open https://github.com/new
-   - Repository name: `lifeline-offline-first-aid`
-   - Visibility: **Public** (chosen 2026-11-07 so the project can be shared)
-   - Do **not** add a README, .gitignore or license (the repo must be empty)
-2. Make sure the local repo exists and has a commit (`git log -1`).
-3. Connect and push:
-   ```bash
-   cd ~/Projects/Lifeline-Offline-First-Aid
-   git remote add origin https://github.com/texasaggie1/lifeline-offline-first-aid.git
-   git push -u origin main
-   ```
-   On the first push over HTTPS, Git asks for a username (`texasaggie1`) and password. The password must be a **Personal Access Token**: GitHub → Settings → Developer settings → Fine-grained tokens, scoped to this repo only with *Contents: Read and write*. macOS Keychain remembers it. Type it yourself; never paste a token into an AI chat or commit it.
-4. Verify: `git log -1 --format=%H` matches the latest commit shown on the GitHub repo page, and the page shows the expected visibility. Record the SHA in `sessions.md`.
+## How pushing works on this Mac (set up 2026-11-07)
+- GitHub CLI `gh` v2.103.3 (official release, checksum verified) installed at `~/.local/bin/gh`.
+- Logged in via browser device flow: `gh auth login --hostname github.com --git-protocol https --web`. Run it so it can't stop at an interactive prompt (e.g. `< /dev/null`), then open https://github.com/login/device and enter the one-time code it prints. The token lives in the macOS Keychain.
+- `gh auth setup-git` makes Git use that login, so `git push` needs no username, password or token.
+- Check with: `~/.local/bin/gh auth status`. Revoke at GitHub → Settings → Applications → Authorized OAuth Apps → GitHub CLI.
 
-Alternative: install GitHub CLI (`gh`) from https://cli.github.com, then run `gh auth login`, followed by `gh repo create texasaggie1/lifeline-offline-first-aid --public --source=. --remote=origin --push`.
+## On a new Mac
+Install `gh` (https://cli.github.com), run the login above and `gh auth setup-git`, then `git clone https://github.com/texasaggie1/lifeline-offline-first-aid.git ~/Projects/Lifeline-Offline-First-Aid`. Recreate your local `.personal-patterns` file (git-ignored) before committing.
 
 ## After each build session
 1. `python3 scripts/log_session.py --title "..." --summary "..." --decision "..." --next "..."`

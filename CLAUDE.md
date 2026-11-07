@@ -34,7 +34,7 @@ Use only these labels: `DONE (verified)`, `PARTIAL`, `NOT STARTED`, `BLOCKED`, `
 | Local retrieval | NOT STARTED | Not designed. A folder of PDFs is not RAG |
 | Offline cold-start tests | NOT STARTED | `docs/OFFLINE-TESTS.md` |
 | Medical human review | NOT STARTED | |
-| Git repo + public GitHub | see latest `sessions.md` entry | Never write "synced" without a remote URL and commit SHA |
+| Git repo + public GitHub | DONE (verified) | First push 2026-11-07: `main` @ `755c36b` matches GitHub; 23 files; PUBLIC. Push with `git push` (gh CLI login). Never write "synced" without checking the remote SHA |
 
 ## 3. Nonnegotiable rules
 1. Never claim medical certification, clinical validation or safe emergency use without dated human signoff and documented tests.

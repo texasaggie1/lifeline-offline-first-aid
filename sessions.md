@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 12:14 -0600 | First push to public GitHub - verified
+- **Summary:** Token-over-HTTPS push failed twice for the user (password prompt). Installed official GitHub CLI v2.103.3 to ~/.local/bin/gh (sha256 matched release checksums; signed by GitHub Developer ID). First interactive gh login stalled at a Y/n prompt the user could not answer in the terminal tab; reran non-interactively, user authorized via github.com/login/device; logged in as texasaggie1 (keyring). gh auth setup-git configured. git push -u origin main succeeded. VERIFIED: GitHub main SHA = local 755c36bfcb48c63c725fdc853190b833e2e05918, repo PUBLIC, 23 files, commit author email = noreply.
+- **Decision:** Use gh CLI browser login for all future pushes; no passwords or tokens typed in terminal.
+- **Next:** Back up LIFELINE Hermes profile, then set Qwen3.5 9B as profile default, trim toolsets to shrink the 11.7K-token prompt, reduce ctx to 16-32K, re-measure first reply; then idle-unload and offline cold-start tests.
+
 ## 2026-11-07 12:08 -0600 | Prepared repo for public sharing
 - **Summary:** User created GitHub repo texasaggie1/lifeline-offline-first-aid as PUBLIC (verified: repo page returns HTTP 200 unauthenticated). First push attempt failed because an account password was used instead of a token; nothing pushed yet. Before first push: added README medical disclaimer and MIT LICENSE; removed personal details (home paths, other agent name) from all tracked files; rewrote commit authorship to GitHub noreply email; squashed local history into a single commit so no earlier version with personal info is published; check.sh now scans tracked files against a local git-ignored .personal-patterns list and blocks any non-noreply commit email. Full-history scan: no personal-pattern hits, only text files (largest 9 KB), no PDFs/weights/secrets.
 - **Decision:** Repo is PUBLIC so the project can be shared. All docs updated from private to public. Commits must use texasaggie1@users.noreply.github.com.
