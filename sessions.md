@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 14:32 -0600 | Army ATP 4-02.11 downloaded and mapped
+- **Summary:** Committed+pushed reference guide (fe3737d, remote SHA verified). With user permission downloaded ATP 4-02.11 (12,665,561 bytes, 254-page PDF, sha256 a4a0650f...) from armypubs.army.mil into git-ignored references/raw/. Extracted text locally with PDFKit (pdftoppm not installed). Confirmed cover: 23 March 2026, Approved for public release, distribution unlimited, supersedes TC 4-02.1. No third-party copyright notices found. Coverage: CPR, choking, bleeding, shock, burns, head injury, anaphylaxis yes; stroke (heat stroke only), seizure, heart attack no; child/infant only brief notes. Added to sources.csv with download_url (references.py verifies both files OK) and a scenario coverage map in KNOWLEDGE-BASE.md. Not reviewed by a human. Herbal/edible-plant scope: user unsure, nothing added.
+- **Decision:** ATP 4-02.11 is the primary public-domain source for trauma/airway scenarios, Tier 1 (lay) content only.
+- **Next:** Save CDC stroke, seizure, heart-attack, head-injury pages via browser; find a pediatric source; decide herbal/plant scope; then design retrieval.
+
 ## 2026-11-07 14:19 -0600 | Reference library: user download guide + checker
 - **Summary:** Reference documents stay out of Git (copyright), so each user must fetch them. Rewrote references/README.md as a step-by-step guide; added scripts/references.py (status: OK/MISSING/MISMATCH/UNPINNED per sources.csv row; fetch: downloads rows with a direct download_url and refuses files whose sha256 does not match); added download_url column to sources.csv (blank for the AHA file, which is manual). Tested: present file -> OK exit 0; file moved away -> MISSING exit 1 and fetch -> MANUAL; file restored. Linked from README quick start and RECOVERY step 7; refreshed stale README status line. User raised adding herbal/edible-plant content; not added, decision pending. Army ATP 4-02.11 download still awaiting user permission; nothing downloaded.
 - **Decision:** No reference files in the repo ever; manifest + checksum script is how users rebuild the library.
