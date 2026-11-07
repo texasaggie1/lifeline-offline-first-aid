@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 14:19 -0600 | Reference library: user download guide + checker
+- **Summary:** Reference documents stay out of Git (copyright), so each user must fetch them. Rewrote references/README.md as a step-by-step guide; added scripts/references.py (status: OK/MISSING/MISMATCH/UNPINNED per sources.csv row; fetch: downloads rows with a direct download_url and refuses files whose sha256 does not match); added download_url column to sources.csv (blank for the AHA file, which is manual). Tested: present file -> OK exit 0; file moved away -> MISSING exit 1 and fetch -> MANUAL; file restored. Linked from README quick start and RECOVERY step 7; refreshed stale README status line. User raised adding herbal/edible-plant content; not added, decision pending. Army ATP 4-02.11 download still awaiting user permission; nothing downloaded.
+- **Decision:** No reference files in the repo ever; manifest + checksum script is how users rebuild the library.
+- **Next:** User decision on ATP 4-02.11 download and on herbal/edible-plant scope; fill download_url/sha256 for each approved public-domain source.
+
 ## 2026-11-07 12:35 -0600 | Bot lockdown: local model, tools cut, SOUL deployed
 - **Summary:** With user approval: copied entire LIFELINE profile to ~/.hermes/backups/lifeline-profile-20261107-1234 (diff identical). Edited ~/.hermes/profiles/lifeline/config.yaml via exact-match replacement: model -> llamacpp Qwen3.5-9B-Q4_K_M @ 127.0.0.1:18434 (same format as Hermes' own default profile config); CLI toolsets 14 -> [clarify]. Deployed agent/SOUL.md to profile SOUL.md (cmp identical). Hermes Desktop was running; config not reverted after edit. No YAML parser available to validate; structure checked by eye.
 - **Decision:** Lockdown applied by file edit; context-size reduction left for Hermes UI because the llamacpp preset is shared and Hermes-generated.

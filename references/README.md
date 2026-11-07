@@ -1,14 +1,29 @@
-# Verified Medical Reference Library
+# Getting the Reference Library
 
-`references/raw/` is reserved for downloaded offline reference documents. It is ignored by Git to avoid copyright/license issues and unnecessary repository bloat. All references need a manifest entry in `sources.csv`.
+**This repository does not contain the medical reference documents.** Most are copyrighted, and even public-domain ones are large and change by edition. Everyone who sets up LIFELINE downloads them from the official publisher into `references/raw/` (which Git ignores).
 
-Initial candidates:
-- American Heart Association CPR/ECC official lay-rescuer algorithms: https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/algorithms
-- American Red Cross first aid and CPR resources: https://www.redcross.org/take-a-class/first-aid (restrictive terms; human-readable only unless permission obtained)
-- American College of Surgeons STOP THE BLEED: https://www.stopthebleed.org/ (**do not ingest into AI** without written permission)
+LIFELINE is not "trained" on these files. The model stays as it is; the documents are what it looks things up in and quotes from (retrieval, not yet built), and they are also the human-readable fallback if the AI is unavailable.
 
-See `docs/KNOWLEDGE-BASE.md` for the licensing gate and public-domain candidates.
+## Steps (do this while you still have internet)
+1. See what you need:
+   ```bash
+   python3 scripts/references.py
+   ```
+   Each line says `OK`, `MISSING`, `MISMATCH` or `UNPINNED`, and where to get missing files.
+2. Download the ones that have a direct link (checked against the recorded sha256; a file that doesn't match is not saved):
+   ```bash
+   python3 scripts/references.py fetch
+   ```
+3. For lines marked `MANUAL`, open the official URL shown, download the document yourself, and save it into `references/raw/` with **exactly** the filename listed in `sources.csv`. Do not use mirrors or re-uploads.
+4. Run step 1 again until every line says `OK`.
+5. Copy `references/raw/` to your offline backup drive (see `docs/RECOVERY.md`). If the network is down you cannot fetch anything.
 
-**Status (2026-11-07):** One file present locally (AHA adult BLS lay-rescuer algorithm); AI-use rights UNKNOWN; not reviewed or indexed. A PDF saved in a folder is not automatically available to a language model. Build and test an actual local retrieval tool before describing this as a functioning knowledge base.
+## If a file says MISMATCH
+The publisher probably released a new edition. Don't just accept it: a new edition must be re-reviewed before LIFELINE relies on it. Keep the new file aside, tell the maintainer (open a GitHub issue), and they'll update the edition, sha256 and review status in `sources.csv`. For web pages saved as PDF, the hash always differs between captures; compare the page's "last reviewed" date with `edition_date` instead.
 
-For each addition, fill `sources.csv` with the document title, issuer, official URL, year/edition, saved file name, checksum, license or permitted-use basis, review status and date. Where redistribution is forbidden, keep the document on encrypted local/external media and do not commit it.
+## Rules for adding a source (maintainers)
+- It must pass the licensing gate in `docs/KNOWLEDGE-BASE.md`. A free download does not mean AI use is allowed.
+- Add a row to `sources.csv` with title, issuer, official URL, edition/date, `local_filename` (under `references/raw/`), `sha256` (`shasum -a 256 <file>`), permission notes, `ai_ingestion_allowed`, review status, reviewer and date. Fill `download_url` only with a direct file link on the publisher's own site.
+- Never commit the document itself. `scripts/check.sh` blocks PDFs and anything under `references/raw/`.
+
+**Status (2026-11-07):** 1 source listed (AHA adult BLS lay-rescuer algorithm; AI use UNKNOWN; not reviewed). Candidate sources under research: `docs/KNOWLEDGE-BASE.md`. Nothing is indexed for the AI yet.

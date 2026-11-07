@@ -6,7 +6,7 @@
 
 An offline-first emergency first-aid reference assistant running in Hermes Desktop on an Apple Silicon Mac. This repository is the **rebuild source of truth**, not the live Hermes profile and not a certified medical product.
 
-> STATUS (2026-11-07): NOT READY FOR EMERGENCY USE. Hermes Desktop + LIFELINE bot exist, but the bot is currently pointed at a **cloud** model with web/memory tools on. The 27B local model failed (too slow); a 9B model (Qwen3.5 9B) passed a first speed test but is not yet configured as default or accuracy-tested. No reviewed references, retrieval, or offline tests yet. Live status table: `CLAUDE.md` §2.
+> STATUS (2026-11-07): NOT READY FOR EMERGENCY USE. The LIFELINE bot is configured for a local 9B model (Qwen3.5 9B) with tools cut to a minimum, but that is not yet confirmed in a fresh chat or with networking off, and the model has not been accuracy-tested. The 27B model failed (too slow). No reviewed references, retrieval, or offline tests yet. Live status table: `CLAUDE.md` §2.
 
 ## Goals
 - Runs locally with no cloud connection when deployed.
@@ -25,7 +25,7 @@ An offline-first emergency first-aid reference assistant running in Hermes Deskt
 2. Review `CLAUDE.md`, `docs/RECOVERY.md`, `docs/SAFETY.md`, and `config/target-state.yaml`.
 3. In Hermes Desktop, open the LIFELINE Bot and confirm it has a separate profile, restricted tools, and a local model. Do not assume the Bot inherits a safe provider.
 4. Export the **actual** LIFELINE profile using Hermes Desktop and back up the export securely, separate from Git.
-5. Populate `references/raw/` with approved locally usable files, document their dates/licensing in `references/sources.csv`, and test local retrieval. The repo intentionally contains no claimed official medical PDFs.
+5. **Get the reference documents yourself.** They are not in this repo (copyright). Follow `references/README.md`: run `python3 scripts/references.py` to see what's missing, then download each from its official publisher into `references/raw/`.
 6. Follow `docs/OFFLINE-TESTS.md` before declaring anything ready.
 7. Keep `sessions.md` newest-first. Use `python3 scripts/log_session.py --summary '...' --decision '...' --next '...'` after a development interaction.
 

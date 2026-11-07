@@ -25,3 +25,4 @@ If (3b) is NO or UNKNOWN, the document may still be kept as a **human-readable f
 - Decide the v1 topic list (the 10 scenarios in `docs/OFFLINE-TESTS.md`).
 - For each topic, pick one primary source that passes the gate; prefer public-domain government sources for AI indexing.
 - Record every file in `references/sources.csv` with `shasum -a 256 <file>`.
+- Documents are never committed; each user downloads them (`references/README.md`, `python3 scripts/references.py`).

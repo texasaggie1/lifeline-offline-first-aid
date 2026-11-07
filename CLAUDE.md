@@ -87,7 +87,7 @@ On a new Apple Silicon Mac: repo cloned, Hermes installed, profile imported from
 - `docs/GITHUB-SYNC.md`: GitHub push steps
 - `docs/SESSION-LOGGING.md`: logging design and limits
 - `docs/archive/`: superseded ChatGPT handoff files (historical only; they reference files that never existed)
-- `references/sources.csv`: source and permission manifest (tracked)
+- `references/sources.csv`: source and permission manifest (tracked). `references/README.md`: how each user gets the documents
 - `references/raw/`: local reference files (git-ignored)
 - `profile-exports/`: Hermes profile exports (git-ignored except README)
-- `scripts/`: `check.sh` (pre-commit guard), `log_session.py`, `sync.sh`
+- `scripts/`: `check.sh` (pre-commit guard), `log_session.py`, `sync.sh`, `references.py` (check/download the reference library)

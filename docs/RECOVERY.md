@@ -14,7 +14,7 @@ Optional: Hermes machine-wide `hermes backup` is different from profile export a
 4. Open `CLAUDE.md` and `sessions.md`; follow `config/target-state.yaml` as a target, not an automatic deployment config.
 5. In Hermes Desktop use Import profile... to import the previously saved LIFELINE profile archive. Verify it appears under its own identity; the exact name may differ, record it.
 6. Reinstall/download the exact local model and quantization documented in `config/target-state.yaml` (or restore model bytes from offline drive). Confirm Metal acceleration, model selection, and no cloud provider fallback.
-7. Restore permitted medical reference files into `~/Projects/Lifeline-Offline-First-Aid/references/raw/`. Validate filenames, versions, and checksums in `references/sources.csv`.
+7. Restore medical reference files into `references/raw/` from the offline drive, or re-download them from the publishers per `references/README.md`. Run `python3 scripts/references.py` until every line says OK.
 8. Reattach the local reference lookup skill/retrieval and test that responses cite actual local sources. A folder full of PDFs alone is not functional retrieval.
 9. Inspect LIFELINE's Capabilities settings. Leave unrelated network, browser, terminal, code, automation and remote connectors disabled.
 10. Execute `docs/OFFLINE-TESTS.md` disconnected and record PASS/FAIL results in `sessions.md`.
