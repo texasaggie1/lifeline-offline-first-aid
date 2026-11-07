@@ -44,7 +44,7 @@ model:
       system_memory_free_pct_after: 36
       user_report: "loads ~20 s first time; replies almost instantly"
     comparison_27b_measured: "prompt 2.5-3.4 tok/s, generation 3.5-3.8 tok/s (~6x slower generation, ~150x slower prompt)"
-    idle_unload_verified: "TBD (llama-server still resident at 12:0x)"
+    idle_unload_verified: "YES (observed 2026-11-07: last use 12:09, model process exited by 12:17; memory free back to 77%). Exact timeout not measured."
     offline_cold_start: "TBD"
 hermes_bot:
   name: LIFELINE

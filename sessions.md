@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 12:17 -0600 | Idle unload observed; bot model check
+- **Summary:** User reports bot connected to unsloth Qwen3.5-9B-GGUF, ~15-20 s first load, quick replies. Verified: recent LIFELINE chats ran Qwen3.5-9B-Q4_K_M via local llamacpp (per-session selection; latencies 4-5 s at 12:09). Idle unload observed: model process exited within ~8 min of last use, memory free 77%. Still true: profile config.yaml default = cloud gpt-6.1-sol and 14 toolsets enabled (incl. web, delegation, memory) - affects new chats and prompt size (~12K tokens).
+- **Decision:** Stay on Qwen3.5 9B (5.3 GB file). Do not fine-tune; teach via SOUL + vetted local references + graded tests. Compare a Gemma-class model later using the same test set.
+- **Next:** Lock down bot in Hermes UI (default model, tools, SOUL, smaller context); then propose public-domain source list for the 10 test scenarios.
+
 ## 2026-11-07 12:14 -0600 | First push to public GitHub - verified
 - **Summary:** Token-over-HTTPS push failed twice for the user (password prompt). Installed official GitHub CLI v2.103.3 to ~/.local/bin/gh (sha256 matched release checksums; signed by GitHub Developer ID). First interactive gh login stalled at a Y/n prompt the user could not answer in the terminal tab; reran non-interactively, user authorized via github.com/login/device; logged in as texasaggie1 (keyring). gh auth setup-git configured. git push -u origin main succeeded. VERIFIED: GitHub main SHA = local 755c36bfcb48c63c725fdc853190b833e2e05918, repo PUBLIC, 23 files, commit author email = noreply.
 - **Decision:** Use gh CLI browser login for all future pushes; no passwords or tokens typed in terminal.
