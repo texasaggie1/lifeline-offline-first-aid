@@ -53,11 +53,16 @@ hermes_bot:
   created: true
   profile_name: "lifeline"  # ~/.hermes/profiles/lifeline
   profile_export_backup: "NOT YET RECORDED"
-  live_state_observed_2026_11_07:
-    provider: "openai-codex (CLOUD) - VIOLATES TARGET"
-    model: "gpt-6.1-sol (CLOUD) - VIOLATES TARGET"
-    cli_toolsets_enabled: [clarify, delegation, file, image_gen, memory, session_search, skills, todo, tts, video, video_gen, vision, web, x_search]
-    deployed_soul: "short early draft, not agent/SOUL.md"
+  live_state_after_lockdown_2026_11_07_1234:
+    provider: "llamacpp (local)"
+    model: "Qwen3.5-9B-Q4_K_M"
+    base_url: "http://127.0.0.1:18434/v1"
+    cli_toolsets_enabled: [clarify]
+    deployed_soul: "agent/SOUL.md (byte-identical)"
+    pre_lockdown_backup: "~/.hermes/backups/lifeline-profile-20261107-1234"
+    before: "cloud openai-codex/gpt-6.1-sol with 14 toolsets incl. web, x_search, delegation, memory"
+    verified_in_new_chat: "TBD"
+    context_size_target: "16K-32K (currently 262K in shared llamacpp preset; change via Hermes UI)"
   capabilities_target:
     file_operations: true
     clarifying_questions: true

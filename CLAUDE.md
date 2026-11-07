@@ -23,13 +23,13 @@ Use only these labels: `DONE (verified)`, `PARTIAL`, `NOT STARTED`, `BLOCKED`, `
 |---|---|---|
 | Hermes Desktop installed | DONE (verified) | `/Applications/Hermes.app`; data in `~/.hermes` |
 | LIFELINE bot/profile exists | DONE (verified) | `~/.hermes/profiles/lifeline/` |
-| Bot uses a LOCAL model | **FAILED** | Live `config.yaml` has `provider: openai-codex`, `default: gpt-6.1-sol`, `base_url: chatgpt.com` — a **cloud** model |
-| Bot tools restricted | **FAILED** | Live CLI toolsets include `web`, `x_search`, `delegation`, `memory`, `session_search`, `image_gen`, `video_gen`, `vision`, `tts`, `file` (read+write) |
-| Deployed SOUL matches `agent/SOUL.md` | PARTIAL | Live SOUL is a shorter early draft; repo version not deployed |
+| Bot uses a LOCAL model | PARTIAL | 2026-11-07 12:34: profile `config.yaml` set to `llamacpp` / `Qwen3.5-9B-Q4_K_M` @ `127.0.0.1:18434` (format copied from Hermes' own default profile). Not yet confirmed in a NEW chat or with networking off |
+| Bot tools restricted | PARTIAL | 2026-11-07 12:34: CLI toolsets cut from 14 to `clarify` only. Takes effect on new chats (Hermes restart may be needed). OS-level isolation not enforced |
+| Deployed SOUL matches `agent/SOUL.md` | DONE (verified) | Copied 2026-11-07 12:34; byte-identical (`cmp`) |
 | Qwen3.8 27B (Q4_K_M, 15 GB) | FAILED | Downloaded. Tested 2026-11-07: ~15 min first response, Mac nearly unusable. **Do not load it again** unless the user explicitly asks for a fresh benchmark |
 | Qwen3.5 9B Q4_K_M (5.3 GB, unsloth GGUF) | PARTIAL — **lead candidate** | Tested in a LIFELINE chat at 11:55 on 2026-11-07, measured from the llama-server logs. Model loads in ~6 s. The first reply took ~31–37 s, mostly spent processing an 11.7K-token system prompt bloated by enabled tools. Follow-ups start in under 1 s and stream at ~20–22 tok/s. Server RSS 9.6 GB with a 262K context. The chat chose the model per session (`provider=custom`); the profile's default is still the cloud model. Not yet: offline test, first-aid accuracy test, idle unload |
 | Mac stability after the 27B incident | DONE (verified) | Rebooted ~10:05; 88% memory free at 11:50; no llama/Hermes process running |
-| Hermes profile export (backup) | NOT STARTED | |
+| Hermes profile export (backup) | PARTIAL | File copy of the whole profile at `~/.hermes/backups/lifeline-profile-20261107-1234` (pre-lockdown; local only, contains credentials files). A Hermes Desktop "Export profile" to encrypted media is still NOT done |
 | Medical references | PARTIAL | 1 file (AHA Adult BLS lay-rescuer algorithm) in `references/raw/`. Rights for AI use UNKNOWN; not reviewed |
 | Local retrieval | NOT STARTED | Not designed. A folder of PDFs is not RAG |
 | Offline cold-start tests | NOT STARTED | `docs/OFFLINE-TESTS.md` |

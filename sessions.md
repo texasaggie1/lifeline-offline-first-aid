@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 12:35 -0600 | Bot lockdown: local model, tools cut, SOUL deployed
+- **Summary:** With user approval: copied entire LIFELINE profile to ~/.hermes/backups/lifeline-profile-20261107-1234 (diff identical). Edited ~/.hermes/profiles/lifeline/config.yaml via exact-match replacement: model -> llamacpp Qwen3.5-9B-Q4_K_M @ 127.0.0.1:18434 (same format as Hermes' own default profile config); CLI toolsets 14 -> [clarify]. Deployed agent/SOUL.md to profile SOUL.md (cmp identical). Hermes Desktop was running; config not reverted after edit. No YAML parser available to validate; structure checked by eye.
+- **Decision:** Lockdown applied by file edit; context-size reduction left for Hermes UI because the llamacpp preset is shared and Hermes-generated.
+- **Next:** On the Mac: restart Hermes or open a NEW LIFELINE chat; confirm model picker shows Qwen3.5 9B; ask a test question; Claude reads logs to confirm local provider and smaller prompt (was ~12K tokens). Reduce context to 16-32K in Hermes model settings. To undo: restore backup folder.
+
 ## 2026-11-07 12:17 -0600 | Idle unload observed; bot model check
 - **Summary:** User reports bot connected to unsloth Qwen3.5-9B-GGUF, ~15-20 s first load, quick replies. Verified: recent LIFELINE chats ran Qwen3.5-9B-Q4_K_M via local llamacpp (per-session selection; latencies 4-5 s at 12:09). Idle unload observed: model process exited within ~8 min of last use, memory free 77%. Still true: profile config.yaml default = cloud gpt-6.1-sol and 14 toolsets enabled (incl. web, delegation, memory) - affects new chats and prompt size (~12K tokens).
 - **Decision:** Stay on Qwen3.5 9B (5.3 GB file). Do not fine-tune; teach via SOUL + vetted local references + graded tests. Compare a Gemma-class model later using the same test set.
