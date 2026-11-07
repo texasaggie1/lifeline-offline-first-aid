@@ -1,0 +1,85 @@
+# Intended state only: NOT Hermes' native config.yaml; never copy over live config blindly.
+project: LIFELINE
+last_reviewed: 2026-11-07
+hardware:
+  class: Apple Silicon MacBook Pro
+  unified_memory_gb: 32
+  exact_chip: "Apple M6"
+  macos: "27.2"
+runtime:
+  app: Hermes Desktop
+  inference_backend: "built-in llama.cpp with Metal"
+  llama_cpp_build_observed: "b11671"
+  separate_ollama_required: false
+  separate_honcho_required: false
+  cloud_fallback_allowed: false
+  online_provider_allowed_during_emergency: false
+  idle_unload_policy: "verify in installed version; do not assume"
+model:
+  # Measured/observed facts only. Paths are on the 2026-11-07 Mac.
+  rejected:
+    - name: "Qwen3.8 27B"
+      file: "~/.hermes/models/Qwen3.8-27B-UD-Q4_K_M.gguf"
+      size_gb: 15
+      quantization: "UD-Q4_K_M"
+      status: "FAILED 2026-11-07: ~15 min first response; Mac unusable. DO NOT LOAD on 32 GB Mac."
+  candidate:
+    name: "Qwen3.5 9B"
+    file: "~/.hermes/models/Qwen3.5-9B-Q4_K_M.gguf"
+    size_gb: 5.3
+    quantization: "Q4_K_M"
+    publisher: "unsloth (Qwen3.5-9B-GGUF)"
+    status: "LEAD CANDIDATE - first test 2026-11-07 good; not yet profile default, not offline-tested, not accuracy-tested"
+    model_file_sha256: "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8"
+    download_source: "Hugging Face unsloth/Qwen3.5-9B-GGUF via Hermes 'Find more models' (confirm exact repo id)"
+    hermes_llamacpp_preset: {ctx_size: 262144, n_slots: 4, cache_type_kv: q8_0, flash_attn: on, batch: 2048}
+    measured_2026_11_07:   # from ~/.hermes/logs/llama-server.log and profiles/lifeline/logs/agent.log
+      model_load_seconds: 6
+      first_reply_total_seconds: 31   # 37.2 s agent-side; 26.6 s of it = prompt processing of 11,713 tokens
+      system_prompt_tokens: 11713     # inflated by enabled toolsets; trimming tools should cut first-reply time
+      prompt_processing_tok_s: 440
+      generation_tok_s: "20-22"
+      followup_reply_seconds: 8.9     # 168 tokens; prompt cache 99%; first token < 1 s
+      llama_server_rss_gb: 9.6        # with 262K ctx; consider ctx 16K-32K to reduce RAM
+      system_memory_free_pct_after: 36
+      user_report: "loads ~20 s first time; replies almost instantly"
+    comparison_27b_measured: "prompt 2.5-3.4 tok/s, generation 3.5-3.8 tok/s (~6x slower generation, ~150x slower prompt)"
+    idle_unload_verified: "TBD (llama-server still resident at 12:0x)"
+    offline_cold_start: "TBD"
+hermes_bot:
+  name: LIFELINE
+  title: First-Aid Assistant
+  description: Offline Emergency First-Aid Assistant
+  created: true
+  profile_name: "lifeline"  # ~/.hermes/profiles/lifeline
+  profile_export_backup: "NOT YET RECORDED"
+  live_state_observed_2026_11_07:
+    provider: "openai-codex (CLOUD) - VIOLATES TARGET"
+    model: "gpt-6.1-sol (CLOUD) - VIOLATES TARGET"
+    cli_toolsets_enabled: [clarify, delegation, file, image_gen, memory, session_search, skills, todo, tts, video, video_gen, vision, web, x_search]
+    deployed_soul: "short early draft, not agent/SOUL.md"
+  capabilities_target:
+    file_operations: true
+    clarifying_questions: true
+    browser_automation: false
+    code_execution: false
+    computer_use: false
+    cron_jobs: false
+    task_delegation: false
+    task_planning: false
+    terminal_processes: false
+    web_search: false
+    memory: false
+    sessions_search: false
+    external_connectors: false
+    a2a: false
+    voice_transcription: false
+    speech_synthesis: false
+    vision: false
+reference_library:
+  root: "~/Projects/Lifeline-Offline-First-Aid/references/raw"
+  approved_files_count: 0
+  local_files_present: 1   # AHA adult BLS lay-rescuer algorithm; AI rights UNKNOWN
+  retriever: "not implemented"
+  clinical_human_review: "not performed"
+  offline_test: "not performed"

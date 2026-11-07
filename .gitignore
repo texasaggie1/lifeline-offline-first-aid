@@ -1,0 +1,38 @@
+# --- macOS / editor noise ---
+.DS_Store
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# --- secrets: never commit ---
+.env
+.env.*
+*.pem
+*.key
+auth.json
+
+# --- model weights: never commit (multi-GB, licensed separately) ---
+*.gguf
+*.safetensors
+*.bin
+models/
+
+# --- medical reference files: copyright/licensing; keep on encrypted local/offline media ---
+references/raw/*
+!references/raw/.gitkeep
+*.pdf
+
+# --- Hermes profile exports: can contain chats and memories ---
+profile-exports/*
+!profile-exports/README.md
+
+# --- archives / backups ---
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.dmg
+
+# --- local personal-info patterns for scripts/check.sh (never commit) ---
+.personal-patterns
