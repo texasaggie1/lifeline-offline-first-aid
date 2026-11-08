@@ -84,7 +84,7 @@ hermes_bot:
 reference_library:
   root: "~/Projects/Lifeline-Offline-First-Aid/references/raw"
   approved_files_count: 0
-  local_files_present: 2   # AHA adult BLS lay algorithm (AI rights UNKNOWN); Army ATP 4-02.11 2026-03-23 (public release)
+  local_files_present: 5   # AHA BLS lay algorithm (AI rights UNKNOWN); Army ATP 4-02.11 (public release); CDC stroke, seizure, heart-attack text captures
   retriever: "not implemented"
   clinical_human_review: "not performed"
   offline_test: "not performed"

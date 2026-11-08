@@ -21,7 +21,7 @@ If (3b) is NO or UNKNOWN, the document may still be kept as a **human-readable f
 | CDC / NIH / FEMA / Ready.gov public pages | Candidate | U.S. federal works are generally public domain; confirm per page, watch for third-party images/content. |
 | **U.S. Army ATP 4-02.11** (23 Mar 2026; supersedes TC 4-02.1) | **Local copy present; AI use LIKELY** | Cover confirmed 2026-11-07: "Approved for public release, distribution is unlimited." No third-party copyright notices in extracted text. Written for soldiers: use Tier 1 / lay content only, never Tier 2 or invasive steps (e.g., needle decompression). Direct link in `sources.csv`. |
 | Other military / government first-aid manuals | Candidate | Often public domain; confirm distribution statement and edition currency. |
-| CDC stroke / seizure / head-injury / heart-attack pages | Candidate | Needed for scenarios ATP 4-02.11 doesn't cover. CDC blocks automated download; save via browser. |
+| CDC stroke, seizure, heart-attack pages | **Local text captures present; AI use LIKELY** | Saved 2026-11-07 from browser (CDC blocks automated download). CDC head-injury page still a candidate. |
 
 ## Coverage of the 10 test scenarios (as of 2026-11-07, from tables of contents and text search, not yet human-reviewed)
 | Scenario | Source on hand | Where | Gap / caution |
@@ -33,9 +33,9 @@ If (3b) is NO or UNKNOWN, the document may still be kept as a **human-readable f
 | Burns | ATP 4-02.11 | Ch. 12 | |
 | Head injury | ATP 4-02.11 | Ch. 11 | Add CDC danger-signs page for civilian follow-up |
 | Anaphylaxis | ATP 4-02.11 | Paras 7-30 to 7-35 | Epinephrine auto-injector use: check wording is lay-appropriate |
-| Stroke | none | ATP covers heat stroke only | **Gap**: CDC F.A.S.T. page |
-| Seizure | none | ATP mentions seizures only as a head-injury sign | **Gap**: CDC seizure first-aid page |
-| Heart attack | none | not covered | **Gap**: CDC heart-attack page |
+| Stroke | CDC stroke signs (May 19, 2026) | B.E. F.A.S.T., call 911, don't drive | Text capture only |
+| Seizure | CDC First Aid for Seizures (May 15, 2024) | Full page | Text capture only |
+| Heart attack | CDC heart attack page (Oct 24, 2024) | Symptoms, call 911 | Recognition only; no aspirin or first-aid steps in source, so LIFELINE must not add any |
 | Child / infant | partial | ATP CPR section gives brief child/infant notes only | **Gap**: no dedicated pediatric source |
 
 Also in ATP 4-02.11 (possible later scenarios): fractures/splinting (Ch. 13), bites and stings (Ch. 16), heat and cold injuries (Ch. 17), eye trauma (Ch. 10), psychological first aid (Ch. 20).

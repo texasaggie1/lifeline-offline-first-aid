@@ -6,6 +6,11 @@ Entries dated 2026-11-07 before the Claude Code entry are a reconstruction of th
 
 <!-- ENTRIES START -->
 
+## 2026-11-07 19:40 -0600 | CDC stroke, seizure, heart-attack pages saved
+- **Summary:** ATP 4-02.11 recorded and pushed (1b64d7f, remote verified). Opened three CDC pages in the browser pane (stroke signs, May 19 2026; first aid for seizures, May 15 2024; heart attack, Oct 24 2024), saved their main text as markdown captures in git-ignored references/raw/ with source headers, added sources.csv rows with sha256; references.py reports all 5 files OK. Coverage map updated: stroke, seizure, heart-attack gaps filled (heart attack source is recognition + call 911 only). CDC head-injury page not captured (ATP Ch. 11 covers it). Child/infant still a gap. Not reviewed.
+- **Decision:** Web pages are stored as dated text captures; their hashes are maintainer-specific, users compare page dates.
+- **Next:** User back at Mac: verify the bot in a new Hermes chat (local model, small prompt), cut context to 16-32K, then plan retrieval.
+
 ## 2026-11-07 14:32 -0600 | Army ATP 4-02.11 downloaded and mapped
 - **Summary:** Committed+pushed reference guide (fe3737d, remote SHA verified). With user permission downloaded ATP 4-02.11 (12,665,561 bytes, 254-page PDF, sha256 a4a0650f...) from armypubs.army.mil into git-ignored references/raw/. Extracted text locally with PDFKit (pdftoppm not installed). Confirmed cover: 23 March 2026, Approved for public release, distribution unlimited, supersedes TC 4-02.1. No third-party copyright notices found. Coverage: CPR, choking, bleeding, shock, burns, head injury, anaphylaxis yes; stroke (heat stroke only), seizure, heart attack no; child/infant only brief notes. Added to sources.csv with download_url (references.py verifies both files OK) and a scenario coverage map in KNOWLEDGE-BASE.md. Not reviewed by a human. Herbal/edible-plant scope: user unsure, nothing added.
 - **Decision:** ATP 4-02.11 is the primary public-domain source for trauma/airway scenarios, Tier 1 (lay) content only.
