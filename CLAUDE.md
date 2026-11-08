@@ -23,9 +23,9 @@ Use only these labels: `DONE (verified)`, `PARTIAL`, `NOT STARTED`, `BLOCKED`, `
 |---|---|---|
 | Hermes Desktop installed | DONE (verified) | `/Applications/Hermes.app`; data in `~/.hermes` |
 | LIFELINE bot/profile exists | DONE (verified) | `~/.hermes/profiles/lifeline/` |
-| Bot uses a LOCAL model | PARTIAL | 2026-11-07 12:34: profile `config.yaml` set to `llamacpp` / `Qwen3.5-9B-Q4_K_M` @ `127.0.0.1:18434` (format copied from Hermes' own default profile). Not yet confirmed in a NEW chat or with networking off |
-| Bot tools restricted | PARTIAL | 2026-11-07 12:34: CLI toolsets cut from 14 to `clarify` only. Takes effect on new chats (Hermes restart may be needed). OS-level isolation not enforced |
-| Deployed SOUL matches `agent/SOUL.md` | DONE (verified) | Copied 2026-11-07 12:34; byte-identical (`cmp`) |
+| Bot uses a LOCAL model | PARTIAL | 2026-11-07 19:43 new-chat test after Hermes restart: all 8 API calls went to Qwen3.5-9B on 127.0.0.1 (verified in agent.log + state.db). Base prompt now ~4.0K tokens (was 11.7K). Not yet tested with networking off. Profile still "borrows" the root Nous OAuth grant (cloud credential reachable) |
+| Bot tools restricted | PARTIAL | Only `clarify` exposed; `tool_search` still lists 12 harmless deferred tools (desktop_ui, catalog, project). With SOUL v2 (19:53 test) the bot made **0** tool calls. OS-level isolation not enforced |
+| Deployed SOUL matches `agent/SOUL.md` | DONE (verified) | SOUL v2 (no-tools rule + quick-reference card from ATP 4-02.11 and CDC) copied 2026-11-07 19:50, byte-identical (`cmp`). Backup before install: `~/.hermes/backups/lifeline-profile-20261107-1950`. Card NOT medically reviewed: `docs/QUICK-REFERENCE-REVIEW.md` |
 | Qwen3.8 27B (Q4_K_M, 15 GB) | FAILED | Downloaded. Tested 2026-11-07: ~15 min first response, Mac nearly unusable. **Do not load it again** unless the user explicitly asks for a fresh benchmark |
 | Qwen3.5 9B Q4_K_M (5.3 GB, unsloth GGUF) | PARTIAL — **lead candidate** | Tested in a LIFELINE chat at 11:55 on 2026-11-07, measured from the llama-server logs. Model loads in ~6 s. The first reply took ~31–37 s, mostly spent processing an 11.7K-token system prompt bloated by enabled tools. Follow-ups start in under 1 s and stream at ~20–22 tok/s. Server RSS 9.6 GB with a 262K context. The chat chose the model per session (`provider=custom`); the profile's default is still the cloud model. Not yet: offline test, first-aid accuracy test, idle unload |
 | Mac stability after the 27B incident | DONE (verified) | Rebooted ~10:05; 88% memory free at 11:50; no llama/Hermes process running |
@@ -81,6 +81,7 @@ On a new Apple Silicon Mac: repo cloned, Hermes installed, profile imported from
 - `agent/SOUL.md`: source-controlled persona. Not auto-deployed; paste it into the bot in Hermes
 - `config/target-state.yaml`: intended settings and measured results (not live config)
 - `docs/SAFETY.md`: medical, runtime and privacy controls
+- `docs/QUICK-REFERENCE-REVIEW.md`: what a medical reviewer must check in the SOUL quick-reference card
 - `docs/KNOWLEDGE-BASE.md`: source licensing gate and candidate sources
 - `docs/OFFLINE-TESTS.md`: acceptance gate
 - `docs/RECOVERY.md`: rebuild after losing the Mac
